@@ -29,7 +29,7 @@ class DeleteCommands extends PluginBase {
 
 	public function onEnable() : void {
 		$this->saveResources();
-		$task = new ClosureTask(function(int $currentTick) : void {
+		$task = new ClosureTask(function() : void {
 			$this->deleteCommands();
 		});
 		$this->getScheduler()->scheduleDelayedTask($task, 0);
@@ -40,7 +40,7 @@ class DeleteCommands extends PluginBase {
 	}
 
 	public static function getConfigs(string $value) : Config {
-		return new Config(self::getInstance()->getDataFolder() . "{$value}.yml", Config::YAML);
+		return new Config(self::getInstance()->getDataFolder() . $value . ".yml", Config::YAML);
 	}
 
 	public function saveResources() : void {
